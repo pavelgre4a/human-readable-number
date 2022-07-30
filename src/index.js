@@ -14,28 +14,26 @@ module.exports = function toReadable (number) {
         return doubleDigitsRounded[Number(number.toString().charAt(0))];
 
     } else if (number >= 20 && number < 100 && Number(number.toString().charAt(1)) !== 0) {
-        return doubleDigitsRounded[Number(number.toString().charAt(0))], singleDigits[Number(number.toString().charAt(1))];
+        return (doubleDigitsRounded[Number(number.toString().charAt(0))] + ' ' + singleDigits[Number(number.toString().charAt(1))]);
 
     } else if (number >= 100) {
         let tripleDigitsHundreds = singleDigits[Number(number.toString().charAt(0))] + ' ' + tripleDigits[0];
         let tripleDigitsOther = number - (100 * Number(number.toString().charAt(0)));
 
-        // console.log(tripleDigitsOther);
-
         if (tripleDigitsOther == 0) {
             return tripleDigitsHundreds;
 
         } else if (tripleDigitsOther < 10 && tripleDigitsOther > 0) {
-            return tripleDigitsHundreds, singleDigits[tripleDigitsOther];
+            return (tripleDigitsHundreds + ' ' + singleDigits[tripleDigitsOther]);
     
         } else if (tripleDigitsOther >= 10 && tripleDigitsOther < 20) {
-            return tripleDigitsHundreds, doubleDigits[tripleDigitsOther - 10];
+            return (tripleDigitsHundreds + ' ' + doubleDigits[tripleDigitsOther - 10]);
     
         } else if (tripleDigitsOther >= 20 && tripleDigitsOther < 100 && Number(tripleDigitsOther.toString().charAt(1)) == 0) {
-            return tripleDigitsHundreds, doubleDigitsRounded[Number(tripleDigitsOther.toString().charAt(0))];
+            return (tripleDigitsHundreds + ' ' + doubleDigitsRounded[Number(tripleDigitsOther.toString().charAt(0))]);
     
         } else if (tripleDigitsOther >= 20 && tripleDigitsOther < 100 && Number(tripleDigitsOther.toString().charAt(1)) !== 0) {
-            return tripleDigitsHundreds, doubleDigitsRounded[Number(tripleDigitsOther.toString().charAt(0))], singleDigits[Number(tripleDigitsOther.toString().charAt(1))];
+            return (tripleDigitsHundreds + ' ' + doubleDigitsRounded[Number(tripleDigitsOther.toString().charAt(0))] + ' ' + singleDigits[Number(tripleDigitsOther.toString().charAt(1))]);
 
         }
 
